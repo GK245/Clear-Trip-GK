@@ -1,0 +1,40 @@
+<div class="container-fluid bg-info"> 
+    <nav class="nav w-75  m-auto justify-content-between ">
+        <a class="nav-link text-dark fw-bold fs-5 text1 "  >SORT BY</a>
+      
+        <a class="nav-link text-dark fw-semibold fs-6 cursor-pointer " (click)="sortHotels(1)" [ngClass]="selectedOpt==1 ? 'active' : ''" >Popular</a>
+        <a class="nav-link text-dark fw-semibold fs-6 cursor-pointer" (click)="sortHotels(2)" [ngClass]="selectedOpt==2  ? 'active' : ''">User Rating <span class="text-muted fs-10">(Highest First)</span></a>
+        <a class="nav-link text-dark fw-semibold fs-6 cursor-pointer" (click)="sortHotels(3)" [ngClass]="selectedOpt==3 ? 'active' : ''">Price <span class="text-muted fs-10">(Highest First)</span></a>
+        <a class="nav-link text-dark fw-semibold fs-6 cursor-pointer" (click)="sortHotels(4)" [ngClass]="selectedOpt==4 ? 'active' : ''">Price <span class="text-muted fs-10">(Lowest First)</span></a>
+          
+    </nav>
+
+</div>
+
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-md-3 m-1  border">         
+              <app-hotels-filter (event)="emittedData($event)"></app-hotels-filter>
+        </div>
+        <div class="col-md-8  " >
+            <div class=" m-1 border border-primary p-2 d-flex" *ngFor="let item of hotelList">
+            <div class="image-container">
+                <img [src]=item.media[0].url alt="">
+            </div>
+            <div class="flex-grow-1  mx-2 w-75 mb-0">
+               <h4 class="mb-0">{{item.name}}</h4>
+               <p class="mt-0"><span class="text-info font ">{{item.locationPersuasion[0]}}</span>|<span>{{item.locationPersuasion[1]}}</span></p>
+               <p class="msg">Prime Location with delicious breakfast</p> 
+            </div>
+            <div class="w-25 text-end pe-1">
+                 <h6 class="mb-0">Very Good<span class="badge bg-primary ms-1 px-2 fs-6">{{item.reviewSummary.cumulativeRating}}</span></h6>
+                 <p class="text-muted">({{item.reviewSummary.totalReviewCount}} ratings)</p>
+                 <p class="text-decoration-line-through font1 mb-0 text-muted mt-2" >₹{{item.priceDetail.priceWithTax}}</p>
+                 <h4 class="fs-4 mt-0">₹{{item.priceDetail.discountedPriceWithTax}}</h4>
+                 <p class="text-muted mt-0">₹ {{item.priceDetail.totalTax}} ruppees taxes per night</p>
+
+            </div>
+        </div>
+        </div>
+    </div> 
+</div>

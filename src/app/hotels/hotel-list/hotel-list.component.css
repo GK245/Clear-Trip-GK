@@ -1,0 +1,39 @@
+.image-container{
+    position: relative;
+    height:  200px;
+    width: 200px;
+    overflow: hidden;
+}
+
+.image-container img {
+    transition: transform 0.3s;
+}
+
+
+.image-container :hover img{
+    transform: scale(1.2);
+}
+
+.msg {
+    color: rgb(210, 90, 90);
+    font-weight: 600;
+}
+.font{
+    font-weight: 700;
+}
+
+.font1{
+    font-weight: 200;
+}
+
+.text1{
+    text-align: right !important;
+}
+
+.fs-10{
+    font-size: 10px;
+}
+
+.active{
+    border-bottom: 4px solid rgb(3, 42, 67);
+}

@@ -1,0 +1,48 @@
+<div class="container p-2 mt-0 border rounded">
+    <div class="row">
+
+        <h2 class="mb-0">Search Hotel</h2>
+        <p class="mt-0 mx-1">Enjoy hastle free bookings with ClearTrip</p>
+
+    </div>
+    <div class="row m-2 p-2 border border-primary rounded">
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+                <span class="input-group-text"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" class="bi bi-map" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103M10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8zm-6-.8V1.11l-4 .8v12.98z" />
+                    </svg></span>
+                <div class="form-floating" style="width: 80%;">
+                    <input type="text" class="form-control curosr-text" id="floatingInputGroup1" name="city" [(ngModel)]="city" placeholder="Location">
+                    <label for="floatingInputGroup1">Location</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+           
+            <input type="text" class="form-control cursor-pointer" id="date1" name="dateFromsearch" [(ngModel)]="selectedDate" (ngModelChange)="dateChanged()" placeholder="Pick The Date" bsDaterangepicker>
+            
+        </div>
+        <div class="col-md-3">
+           
+          <div class="dropdown curosr">
+                <button class="btn border  dropdown-toggle w-75" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  1 Room,2 Adults
+                </button>
+                <ul class="dropdown-menu w-75" aria-labelledby="dropdownMenuButton1">
+
+                  <li><a class="dropdown-item" *ngFor="let items of roomsArr" (click)="selectedRoom(items)">{{items}}</a></li>
+                  
+                </ul>
+            </div>
+        </div> 
+        <div class="text-end">
+            <button type="button" class=" btn btn-primary" (click)="searchHotel()" routerLink="/hotels/hotel-list" 
+            [queryParams]="{city : city, checkInDate : checkInDate , checkOutDate : checkOutDate , room :selRoom}">Search</button>
+        </div>
+    </div>
+    
+
+
+</div>
