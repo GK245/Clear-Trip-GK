@@ -38,9 +38,9 @@ export class HotelListComponent {
         
         if(el && el.response && el.response.personalizedSections){
           this.hotelList =el.response.personalizedSections[0].hotels
-          this.hotelListCopy  ={
+          this.hotelListCopy  =[
             ...this.hotelList
-          }  
+        ] 
           console.log("hotel" , this.hotelList);
           
         }
@@ -72,23 +72,37 @@ export class HotelListComponent {
 
   emittedData(data : any){
         console.log("data", data)
+        console.log(this.hotelListCopy);
+        
       this.filter(data);
   }
 
   filter(data : any){
-    if(data.type=='Rating'){
-      console.log("hotelList",this.hotelList);
-      
-      this.hotelListCopy=this.hotelList.filter((el : any)=>{
-        console.log("el",el);
-        
-        el.reviewSummary.cumulativeRating > data.filterValue
-      })
-    }else if(data.type=='PRICE_PER_NIGHT'){
-      this.hotelListCopy=this.hotelList.filter((el : any)=>{
-        el.priceDetail.discountedPriceWithTax<data.filterRange.max
-      })
-    }
+    if(data.type=='RATING' && data.isSelected ){
+      this.hotelList=this.hotelListCopy.filter((el :any)=>{
+       return el.reviewSummary.cumulativeRating >data.filterValue
+      }
+      ) 
+    }else if(data.type=='PRICE_PER_NIGHT' && data.isSelected){
+      this.hotelList=this.hotelListCopy.filter((el :any)=>{
+        return el.priceDetail.discountedPriceWithTax<data.filterRange.max
+    })}
+
 
   }
+  //   if(data.type=='Rating'){
+  //     console.log("hotelList",this.hotelList);
+      
+  //     this.hotelListCopy=this.hotelList.filter((el : any)=>{
+  //       console.log("el",el);
+        
+  //       el.reviewSummary.cumulativeRating > data.filterValue
+  //     })
+  //   }else if(data.type=='PRICE_PER_NIGHT'){
+  //     this.hotelListCopy=this.hotelList.filter((el : any)=>{
+  //       el.priceDetail.discountedPriceWithTax<data.filterRange.max
+  //     })
+  //   }
+
+  // }
 }
